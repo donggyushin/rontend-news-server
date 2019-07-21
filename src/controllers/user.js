@@ -58,10 +58,15 @@ export const login = async (req, res) => {
 }
 
 export const newAccount = (req, res) => {
+
+    console.log("req:", req);
+
     const { firstName,
         lastName,
         email,
         password } = req.body;
+
+
 
     // Find user by email
     User.findOrCreate({
