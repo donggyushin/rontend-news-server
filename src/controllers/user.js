@@ -59,13 +59,15 @@ export const login = async (req, res) => {
 
 export const newAccount = (req, res) => {
 
-    console.log("req:", req);
+
 
     const { firstName,
         lastName,
         email,
         password } = req.body;
 
+    console.log(req.body)
+    console.log(firstName, lastName, email, password)
 
 
     // Find user by email
