@@ -3,6 +3,7 @@ import { generateJwt } from '../utils/jsonwebtoken';
 
 export const login = async (req, res) => {
     const { email, password } = req.body
+    console.log('password: ', password)
     // Find user with email
     let user = null
     try {
@@ -18,6 +19,15 @@ export const login = async (req, res) => {
             token: null,
             message: "Fail to find a user with that email"
         })
+    }
+
+    if (user === null) {
+        res.json({
+            ok: false,
+            token: null,
+            message: "Can't find user. Check your email again."
+        })
+        return
     }
 
 
@@ -36,12 +46,14 @@ export const login = async (req, res) => {
                 token,
                 message: "Fail to login with no clue."
             })
+            return
         } else {
             res.json({
                 ok: true,
                 token,
                 message: null
             })
+            return
         }
 
 
@@ -52,6 +64,7 @@ export const login = async (req, res) => {
             token: null,
             message: "Wrong password"
         })
+        return
     }
 
 
